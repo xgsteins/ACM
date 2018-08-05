@@ -1,2 +1,2 @@
 # ACM
-About my acm training
+About acm training

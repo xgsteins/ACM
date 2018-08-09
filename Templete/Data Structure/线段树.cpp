@@ -2,13 +2,13 @@
 //      建树 O(nlog(n))
 //      查询 O(log(n))
 const int maxm = 100000 + 100;
-int num[maxm]
+int num[maxm];
 int sum;
 struct tree
 {
 	 int left,right;
 	 int n;
-}t[2 * maxm + 100];
+}t[maxm<<1 + 100];
 
 void make(int l,int r,int k)
 {
@@ -20,9 +20,9 @@ void make(int l,int r,int k)
 		}
 		t[k].left=l;
 		t[k].right=r;
-		make(l,(l+r)/2,2*k);
-		make((l+r)/2+1,r,2*k+1);
-		t[k].n = t[2*k].n + t[2*k+1].n;
+		make(l,(l+r)>>1,k<<1);
+		make((l+r)>>1+1,r,k<<1|1);
+		t[k].n = t[k<<1].n + t[k<<1|1].n;
 }//建树
 
 void Query(int l,int r,int k)
@@ -32,8 +32,8 @@ void Query(int l,int r,int k)
 			sum+=t[k].n;
 			return;
 		}
-		if(l<=(t[k].left+t[k].right)/2)
-			Query(l,r,2*k,a);
-		if(r>=(t[k].left+t[k].right)/2+1)
-			Query(l,r,2*k+1,a);
+		if(l<=(t[k].left+t[k].right)>>1)
+			Query(l,r,k<<1);
+		if(r>=(t[k].left+t[k].right)>>1+1)
+			Query(l,r,k<<1|1);
 }//查询

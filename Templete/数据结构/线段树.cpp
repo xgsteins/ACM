@@ -2,7 +2,7 @@
 //建树 O(nlog(n))
 //查询 O(log(n))
 const int maxm = 100000 + 100;
-int num[maxm]
+int num[maxm];
 int sum;
 struct tree
 {
@@ -31,7 +31,7 @@ void Query(int l,int r,int k)
 		return;
 	}
 	if(l<=(t[k].left+t[k].right)/2)
-		Query(l,r,2*k,a);
+		Query(l,r,2*k);
 	if(r>=(t[k].left+t[k].right)/2+1)
-		Query(l,r,2*k+1,a);
+		Query(l,r,2*k+1);
 }//查询

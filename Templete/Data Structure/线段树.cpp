@@ -8,7 +8,7 @@ struct tree
 {
 	 int left,right;
 	 int n;
-}t[maxm<<1 + 100];
+}t[maxm*2 + 100];
 void push_up(int k)
 {
 		t[k].n = t[k<<1].n + t[k<<1|1].n;

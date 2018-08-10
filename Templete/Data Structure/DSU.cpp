@@ -1,16 +1,16 @@
-//      DSU²¢²é¼¯
-//      Ê±¼ä¸´ÔÓ¶ÈO(M Alpha(N), ÕâÀïAlphaÊÇAckermanº¯ÊıµÄÄ³¸ö·´º¯Êı, NÎªºÏ²¢´ÎÊı, MÎª²éÕÒ´ÎÊı
-//      ¿Õ¼ä¸´ÔÓ¶ÈO(n)
+//      DSUå¹¶æŸ¥é›†
+//      æ—¶é—´å¤æ‚åº¦O(M Alpha(N), è¿™é‡ŒAlphaæ˜¯Ackermanå‡½æ•°çš„æŸä¸ªåå‡½æ•°, Nä¸ºåˆå¹¶æ¬¡æ•°, Mä¸ºæŸ¥æ‰¾æ¬¡æ•°
+//      ç©ºé—´å¤æ‚åº¦O(n)
 const int INF = 0x3f3f3f3f;
 const int maxn = 1000;
-int pre[maxn];//±£´æµ±Ç°×ø±êµÄ¸ù½Úµã
-int Find(int x)//Ñ°ÕÒ¸ù½Úµã
+int pre[maxn];//ä¿å­˜å½“å‰åæ ‡çš„æ ¹èŠ‚ç‚¹
+int Find(int x)//å¯»æ‰¾æ ¹èŠ‚ç‚¹
 {
     int r = x;
     while(pre[r] != r)
         r=pre[r];
     int i = x, j;
-    while(i != r)//Ñ¹ËõÂ·¾¶
+    while(i != r)//å‹ç¼©è·¯å¾„
     {
         j = pre[i];
         pre[i] = r;
@@ -19,7 +19,7 @@ int Find(int x)//Ñ°ÕÒ¸ù½Úµã
     return r;
 }
 
-void mix(int x, int y)//½¨Á¢Á¬½Ó¹ØÏµ
+void mix(int x, int y)//å»ºç«‹è¿æ¥å…³ç³»
 {
 	int fx = Find(x);
 	int fy = Find(y);

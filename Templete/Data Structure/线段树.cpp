@@ -24,7 +24,7 @@ void make(int l,int r,int k)//1，n，1
 		t[k].left=l;
 		t[k].right=r;
 		make(l,(l+r)>>1,k<<1);
-		make((l+r)>>1+1,r,k<<1|1);
+		make(((l+r)>>1)+1,r,k<<1|1);
 		push_up(k);
 }//建树
 void Add(int l,int r,int k,int x)//左端点，右端点，1，加x

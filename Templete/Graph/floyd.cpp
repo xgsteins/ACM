@@ -7,7 +7,7 @@ const int INF = 0x3f3f3f3f;
 const int maxn = 1000;
 int e[maxn][maxn];
 int path[maxn][maxn];
-void floyd(int n)                               //传入参数为节点总数
+void Floyd(int n)                               //传入参数为节点总数
 {
     for(int i = 1; i <= n; i++)
         for(int j = 1; j <= n; j++)

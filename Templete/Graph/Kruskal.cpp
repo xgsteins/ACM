@@ -1,5 +1,6 @@
-//      时间复杂度O(ElogE)
-//      适用于稀疏图
+//      时间复杂度O(ElogE)  
+//      E为边数
+//      适用于稀疏图(点多边少)
 
 
 #include <cstring>
@@ -13,7 +14,7 @@ struct Edge
     int u, v, w;                //  起点，终点， 权值
 }e[vmaxn];
 int f[emaxn];                   //  并查集
-int tot;                        //  记录边数
+int tot = 0;                        //  记录边数
 
 bool cmp(Edge a,Edge b)
 {

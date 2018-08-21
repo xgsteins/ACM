@@ -31,7 +31,7 @@ void make(int l,int r,int k)//1，n，1
 		{
 			t[k].left=t[k].right=l;
 			t[k].n=num[k];
-			b[l]=k;
+			b[l]=k;//不需要点修改的时候这行可以删掉
 			return;
 		}
 		t[k].left=l;

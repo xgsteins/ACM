@@ -1,6 +1,8 @@
 //      简单线段树
 //      建树 O(nlog(n))
 //      查询 O(log(n))
+//			点修改 O(logn)
+//			段修改 O(nlogn)
 const int maxm = 1000000 + 100;//点的数量
 int num[maxm];
 int b[maxm];

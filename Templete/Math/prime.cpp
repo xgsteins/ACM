@@ -8,6 +8,6 @@ void prime()
 	ifprime[0]=ifprime[1]=0;
 	for(i=2;i<1000000;i++)
 		if(ifprime[i]==1)
-			for(k=1;k*i<1000000;k++)
+			for(k=2;k*i<1000000;k++)
 				ifprime[k*i]=0;
  }

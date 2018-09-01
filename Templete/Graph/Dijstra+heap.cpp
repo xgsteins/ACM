@@ -10,6 +10,11 @@ const int maxn = 100010;
 const int INF = 0x3f3f3f3f;
 int head[maxn], tot;        // 使用前需初始化
 
+void init()                 //  初始化
+{
+    memset(head, -1, sizeof(head));
+    tot = 0;
+}
 struct edge
 {
     int v, next, w;
@@ -46,7 +51,7 @@ void addedge(int u, int v, int w)
 }
 
 
-int dis[maxn];
+int dis[maxn], pre[maxn];
 bool vis[maxn];
 priority_queue<qnode> que;
 void dijkstra(int n, int beg)
@@ -55,6 +60,7 @@ void dijkstra(int n, int beg)
     {
         dis[i] = INF;
         vis[i] = false;
+        pre[i] = -1;
     }
     dis[beg] = 0;
     while(!que.empty()) que.pop();
@@ -74,6 +80,7 @@ void dijkstra(int n, int beg)
             if(!vis[v] && dis[v] > dis[u]+w)
             {
                 dis[v] = dis[u]+w;
+                pre[v] = u;
                 que.push(qnode(v, dis[v]));
             }
         }

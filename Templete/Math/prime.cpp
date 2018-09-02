@@ -9,6 +9,6 @@ void prime()
 	for(int i=2;i<maxm;i++)
 		if(ifprime[i])
 			for(int k=2;k*i<maxm;k++)
-				if(prime[k*i])
+				if(ifprime[k*i])
 					ifprime[k*i]=false;
  }

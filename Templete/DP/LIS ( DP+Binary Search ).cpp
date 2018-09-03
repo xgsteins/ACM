@@ -20,6 +20,7 @@ int BinSearch(int num, int low, int high)
 int DP(int n)                           // n为该序列长度
 {
     int len = 1;                        // len为子序列长度
+    b[1] = a[1];
     for(int i = 2; i <= n; i++)
     {
         if(a[i] >= b[len])              // 若大于b最后一个列，直接添加到末尾（此为最长非递减， 将>=修改为>则为最长递增）

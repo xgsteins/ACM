@@ -19,16 +19,22 @@ int binary_search(int *a,int r,int x)
 int LIS(int n)//字符数量
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> acbd0b867810d092a9b38b11ca0c418909f2b0b2
     for(int i=1;i<=n;i++)
         low[i]=INF;//由于low中存的是最小值，所以low初始化为INF
     low[1]=a[1];
     ans=1;//初始时LIS长度为1
     for(int i=2;i<=n;i++)
+<<<<<<< HEAD
 =======
     int len = 1;                        // len为子序列长度
     b[1] = a[1];
     for(int i = 2; i <= n; i++)
 >>>>>>> 53e08d93253ec01717ca3ea3ae18b798ca7b6b2e
+=======
+>>>>>>> acbd0b867810d092a9b38b11ca0c418909f2b0b2
     {
         if(a[i]>low[ans])//若a[i]>=low[ans]，直接把a[i]接到后面
             low[++ans]=a[i];

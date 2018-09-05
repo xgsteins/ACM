@@ -1,37 +1,33 @@
-//      时间复杂度O(nlogn)
-//      可求最长上升子序列长度或者最长非递减子序列长度
-//      以及该子序列内容
-
-const int maxn = 100000;
-int a[maxn], b[maxn];       // a存储原序列， b为目标最长子序列
-
-int BinSearch(int num, int low, int high)
+const int maxn =30005;
+const int INF=0x7fffffff;
+int low[maxn],a[maxn];//字符串存在a里，从a[1]开始
+int n,ans;
+int binary_search(int *a,int r,int x)
+//二分查找，返回a数组中第一个>=x的位置
 {
-    int mid;
-    while(low <= high)
+    int l=1,mid;
+    while(l<=r)
     {
-        mid = (low+high) / 2;
-        if(num >= b[mid])  low = mid+1;
-        else               high = mid-1;
+        mid=(l+r)>>1;
+        if(a[mid]<x)
+            l=mid+1;
+        else
+            r=mid-1;
     }
-    return low;
+    return l;
 }
-
-int DP(int n)                           // n为该序列长度
+int LIS(int n)//字符数量
 {
-    int len = 1;                        // len为子序列长度
-    for(int i = 2; i <= n; i++)
+    for(int i=1;i<=n;i++)
+        low[i]=INF;//由于low中存的是最小值，所以low初始化为INF
+    low[1]=a[1];
+    ans=1;//初始时LIS长度为1
+    for(int i=2;i<=n;i++)
     {
-        if(a[i] >= b[len])              // 若大于b最后一个列，直接添加到末尾（此为最长非递减， 将>=修改为>则为最长递增）
-        {
-            len++;
-            b[len] = a[i];
-        }
-        else                            // 否则在b中查找第一个大于a[i]的位置并替换为a[i]
-        {
-            int pos = BinSearch(a[i], 1, len);
-            b[pos] = a[i];
-        }
+        if(a[i]>low[ans])//若a[i]>=low[ans]，直接把a[i]接到后面
+            low[++ans]=a[i];
+        else //否则，找到low中第一个>=a[i]的位置low[j]，用a[i]更新low[j]
+            low[binary_search(low,ans,a[i])]=a[i];
     }
-    return len;
+    return ans;//返回最长上升子序列长度
 }

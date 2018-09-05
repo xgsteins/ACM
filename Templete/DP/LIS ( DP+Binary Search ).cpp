@@ -1,3 +1,4 @@
+//时间复杂度     O(nlog(n))
 const int maxn =30005;
 const int INF=0x7fffffff;
 int low[maxn],a[maxn];//字符串存在a里，从a[1]开始

@@ -15,7 +15,7 @@ void qSort(int l, int r)
             swap(a[mid], a[j]);
         }
     }
-    swap(a[mid+1], a[r]);
+    swap(a[++mid], a[r]);
     qSort(l, mid-1);
     qSort(mid+1, r);
 }

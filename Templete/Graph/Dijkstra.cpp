@@ -32,7 +32,7 @@ void Dijkstra(int beg, int n)
         vis[k] = true;
         for(int j = 1; j <= n; j++)
         {
-            if(!vis[i] && dis[k]+e[k][j] < dis[j])
+            if(!vis[j] && dis[k]+e[k][j] < dis[j])
             {
                 dis[j] = dis[k]+e[k][j];
                 pre[j] = k;

@@ -1,3 +1,4 @@
 # ACM
-About acm training
-# 齐世杰牛逼！！！！！！！！！！！
+About acm training, including 
+- Sloutions classified by types of problems
+- Some Common Templetes

@@ -3,18 +3,23 @@
 //      查询 O(log(n))
 //			点修改 O(logn)
 //			段修改 O(nlogn)
+#include<algorithm>
+using namespace std;
 const int maxm = 1000000 + 100;//点的数量
 int num[maxm];
 int b[maxm];
-int sum;
+int Max,Min,sum;
 struct tree
 {
-	 int left,right;
-	 int n;
+    int left,right;
+    int maxx,minn;
+    int sum;
 }t[maxm*3 + 100];
 void push_up(int k)
 {
-		t[k].n = t[k<<1].n + t[k<<1|1].n;
+    t[k].maxx =max( t[k<<1].maxx, t[k<<1|1].maxx);
+    t[k].minn =min( t[k<<1].minn, t[k<<1|1].minn);
+    t[k].sum =t[k<<1].sum+t[k<<1|1].sum;
 }
 void refresh(int k)//点标号
 {
@@ -30,7 +35,7 @@ void make(int l,int r,int k)//1，n，1
 		if(l==r)
 		{
 			t[k].left=t[k].right=l;
-			t[k].n=num[l];
+	        t[k].maxx=t[k].minn=t[k].sum=num[l];
 			b[l]=k;//不需要点修改的时候这行可以删掉
 			return;
 		}
@@ -44,7 +49,7 @@ void Add(int l,int r,int k,int x)//左端点，右端点，1，加x
 {
 		if(t[k].left==t[k].right)
 		{
-			t[k].n+=x;
+			t[k].sum+=x;
 			return;
 		}
 		if(l<=(t[k].left+t[k].right)>>1)
@@ -62,7 +67,7 @@ void Sub(int l,int r,int k,int x)//左端点，右端点，1，减x
 {
 		if(t[k].left==t[k].right)
 		{
-			t[k].n-=x;
+			t[k].sum-=x;
 			return;
 		}
 		if(l<=(t[k].left+t[k].right)>>1)
@@ -78,13 +83,15 @@ void sub(int d,int x)//点标号，减x
 }//点减法
 void Query(int l,int r,int k)//左端点，右端点，，1
 {
-		if(l<=t[k].left&&r>=t[k].right)
-		{
-			sum+=t[k].n;
-			return;
-		}
-		if(l<=(t[k].left+t[k].right)>>1)
-			Query(l,r,k<<1);
-		if(r>(t[k].left+t[k].right)>>1)
-			Query(l,r,k<<1|1);
+    if(l<=t[k].left&&r>=t[k].right)
+    {
+        Max=max(Max,t[k].maxx);
+        Min=min(Min,t[k].minn);
+        sum+=t[k].sum;
+        return;
+    }
+    if(l<=(t[k].left+t[k].right)>>1)
+        Query(l,r,k<<1);
+    if(r>(t[k].left+t[k].right)>>1)
+        Query(l,r,k<<1|1);
 }//查询段和

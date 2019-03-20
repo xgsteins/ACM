@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 100000+10;
-int trie[10*maxn][2], tot = 1;
+const int maxn = (100000+10)*31;
+int trie[maxn][2], tot = 1;
 int num[maxn];
 bool isEnd[maxn];
 char s[40];
@@ -40,7 +40,7 @@ int search(char *str)
         {
             if(trie[p][1])
             {
-                sum += qpow(31-i);
+                sum += qpow(30-i);
                 p = trie[p][1];
             }
             else    p = trie[p][0];
@@ -49,7 +49,7 @@ int search(char *str)
         {
             if(trie[p][0])
             {
-                sum += qpow(31-i);
+                sum += qpow(30-i);
                 p = trie[p][0];
             }
             else    p = trie[p][1];
@@ -60,8 +60,8 @@ int search(char *str)
 
 void change(int x)
 {
-    for(int j = 0; j < 32; j++) s[j] = '0';
-    int cnt = 31;
+    for(int j = 0; j < 31; j++) s[j] = '0';
+    int cnt = 30;
     while(x)
     {
         s[cnt] += x&1;

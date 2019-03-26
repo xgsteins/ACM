@@ -1,24 +1,12 @@
 #include <iostream>
 #include <cstdio>
+#include <iostream>
 #include <string>
 #include <cstring>
-#include <algorithm>
 using namespace std;
-int vis[27][10], record[9][9], cnt, zeroNum, flag;
-typedef struct point
-{
-    int x, y, sum;
-    point(){sum = 9;}
-    point(int _x, int _y)
-    {
-        x = _x;
-        y = _y;
-        sum = 9;
-    }
-}point;
-point poi[82];
-char s[9][10];
-bool cmp(point a, point b)  { return a.sum > b.sum; }
+int vis[27][10], cnt, zeroNum, flag;
+pair<int, int> poi[82];
+string s[9];
 void dfs(int ind)
 {
     if(flag)    return;
@@ -28,7 +16,7 @@ void dfs(int ind)
         flag = 1;
         return;
     }
-    int x = poi[ind].x, y = poi[ind].y;
+    int x = poi[ind].first, y = poi[ind].second;
     for(int i = 1; i <= 9; i++)
     {
         if(!vis[x][i] && !vis[9+y][i] && !vis[18+x/3*3+y/3][i])
@@ -39,7 +27,7 @@ void dfs(int ind)
             vis[x][i] = vis[9+y][i] = vis[18+x/3*3+y/3][i] = 0;
         }
     }
-};
+}
 int main()
 {
     int T;
@@ -61,22 +49,13 @@ int main()
                     vis[i][s[i][j]-'0'] = 1;
                     vis[9+j][s[i][j]-'0'] = 1;
                     vis[18+i/3*3+j/3][s[i][j]-'0'] = 1;
-                    for(int x = 0; x < 9; x++)
-                    record[i][x]++, record[x][i]++;
-                    for(int x = i-i%3; x < i-i%3+3; x++)
-                        for(int y = j-j%3; y < j-j%3+3; y++)
-                        {
-                            record[x][y]++;
-                        }
                 }
                 else
                 {
-                    poi[zeroNum++] = point(i, j);
+                    poi[zeroNum++] = make_pair(i, j);
                 }
             }
         }
-        for(int i = 0; i < zeroNum; i++)    poi[i].sum = record[poi[i].x][poi[i].y];
-        sort(poi, poi+zeroNum, cmp);
         dfs(0);
     }
 }

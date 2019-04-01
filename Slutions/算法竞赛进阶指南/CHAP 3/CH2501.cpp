@@ -21,39 +21,22 @@ typedef struct point
     }
 }point;
 
-void bfs(int a, int b)
+queue<point> que;
+void bfs()
 {
-    if(s[a][b] == '1')  return;
-    if(res[a][b])       return;
-    memset(vis, 0, sizeof(vis));
-    queue<point> que1, que2;
-    que1.push(point(a, b, 0));
-    int x, y, dis, rcd, len;
-    while(!que1.empty())
+    while(!que.empty())
     {
-        x = que1.front().x, y = que1.front().y, dis = que1.front().dis;
-        if(res[x][y] || s[x][y] == '1')
-        {
-            rcd = dis;
-            len = res[x][y];
-            break;
-        }
-        que2.push(que1.front());
-        que1.pop();
+        int x = que.front().x, y = que.front().y, dis = que.front().dis;
+        que.pop();
+        if(vis[x][y]) continue;
         vis[x][y] = 1;
+        res[x][y] = dis;
         for(int i = 0; i < 4; i++)
         {
-            if(inB(x+nxtx[i], y+nxty[i]) && !vis[x+nxtx[i]][y+nxty[i]])
-                que1.push(point(x+nxtx[i], y+nxty[i], dis+1));
+            if(inB(x+nxtx[i], y+nxty[i]) && !vis[x+nxtx[i]][y+nxty[i]] && s[x+nxtx[i]][y+nxty[i]] != '1')
+                que.push(point(x+nxtx[i], y+nxty[i], dis+1));
         }
     }
-    while(!que2.empty())
-    {
-        x = que2.front().x, y = que2.front().y, dis = que2.front().dis;
-        res[x][y] = len-dis+rcd;
-        que2.pop();
-    }
-
 }
 int main()
 {
@@ -62,7 +45,9 @@ int main()
         cin >> s[i];
     for(int i = 0; i < n; i++)
         for(int j = 0; j < m; j++)
-            bfs(i, j);
+            if(s[i][j] == '1')
+                que.push(point(i, j, 0));
+    bfs();
     for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < m; j++)
@@ -70,6 +55,5 @@ int main()
             printf("%d ", res[i][j]);
         }
         puts("");
-    }
-        
+    }   
 }

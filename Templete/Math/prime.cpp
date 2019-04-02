@@ -1,14 +1,19 @@
-//我也不知道时间复杂度
-#include<cstring>
-#define maxm (int)1e7
-bool ifprime[maxm];//true为素数，false为和数
-void prime()
+// 埃氏筛
+// 时间复杂度 O(nloglogn)
+
+const int maxn = (int)1e7;
+int isP[maxn], prime[maxn-1], cnt; // 0为质数
+void countPrime()
 {
-	memset(ifprime,1,sizeof(ifprime));
-	ifprime[0]=ifprime[1]=false;
-	for(int i=2;i<maxm;i++)
-		if(ifprime[i])
-			for(int k=2;k*i<maxm;k++)
-				if(ifprime[k*i])
-					ifprime[k*i]=false;
- }
+	for (int i = 2; i <= maxn; i++)
+	{
+		if (!isP[i])
+		{
+			prime[cnt++] = i;
+			for (long long j = i; j * i < maxn; j++)
+			{
+				isP[i * j] = 1;
+			}
+		}
+	}
+}

@@ -25,7 +25,7 @@ int main()
     int l, r;
     while(scanf("%d%d", &l, &r) != EOF)
     {
-        if(l == 1)  l = 2;
+        if(l == 1)  l = 2;              // !!! 
         memset(res, 0, sizeof(res));
         int rr = (int)sqrt(r);
         for(int i = 0; i < cnt; i++)

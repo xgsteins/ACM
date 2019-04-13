@@ -7,10 +7,7 @@ int main()
 {
     int m, n, w, h, flag = 0;
     scanf("%d%d%d%d", &m, &n, &w, &h);
-    for(int i = 0; i < m; i++)
-    {
-        scanf("%d", &p[i]);
-    }
+    for(int i = 0; i < m; i++)  scanf("%d", &p[i]);
     for(int i = 0; i < n; i++)  scanf("%d", &day[i]);
     for(int i = 0; i < n-w+1; i++)
     {
@@ -47,6 +44,14 @@ int main()
     for(int i = 0; i < n; i++)
     {
         if(day[i] != 0)
+        {
+            puts("-1");
+            return 0;
+        }
+    }
+    for(int i = 0; i < m; i++)
+    {
+        if(p[i] != 0)
         {
             puts("-1");
             return 0;

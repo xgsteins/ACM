@@ -1,30 +1,18 @@
 //      DSU并查集
 //      时间复杂度O(M Alpha(N), 这里Alpha是Ackerman函数的某个反函数, N为合并次数, M为查找次数
 //      空间复杂度O(n)
-const int INF = 0x3f3f3f3f;
 const int maxn = 1000;
-int pre[maxn];//保存当前坐标的根节点
-int Find(int x)//寻找根节点
+
+int fa[maxn];
+
+void init(int n)
 {
-    int r = x;
-    while(pre[r] != r)
-        r=pre[r];
-    int i = x, j;
-    while(i != r)//压缩路径
-    {
-        j = pre[i];
-        pre[i] = r;
-        i = j;
-    }
-    return r;
+    for(int i = 1; i <= n; i++)
+        fa[i] = i;
 }
 
-void mix(int x, int y)//建立连接关系
-{
-	int fx = Find(x);
-	int fy = Find(y);
-	if(fx != fy)
-    {
-		pre[fx] = fy;
-	}
-}
+int find(int x) { return x == fa[x] ? x : fa[x] = find(fa[x]); }
+
+void merge(int x, int y) { fa[find(x)] = find(y); }
+
+

@@ -40,6 +40,8 @@ void Add(int l,int r,int k,int x)//左端点，右端点，1，加x
 	if(t[k].La!=0)
 	{
 		t[k].sum+=t[k].La*(t[k].right-t[k].left+1);
+		t[k].maxx+=t[k].La;
+		t[k].minn+=t[k].La;
 		if(t[k].right>t[k].left)
 		{
 			t[k<<1].La+=t[k].La;
@@ -71,6 +73,8 @@ void Query(int l,int r,int k)//左端点，右端点，，1
 	if(t[k].La!=0)
 	{
 		t[k].sum+=t[k].La*(t[k].right-t[k].left+1);
+		t[k].maxx+=t[k].La;
+		t[k].minn+=t[k].La;
 		if(t[k].right>t[k].left)
 		{
 			t[k<<1].La+=t[k].La;
